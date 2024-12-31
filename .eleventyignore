@@ -1,1 +1,5 @@
 /node_modules
+.github
+_cache
+README.md
+**/__sample.md

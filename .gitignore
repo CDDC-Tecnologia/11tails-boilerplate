@@ -1,4 +1,7 @@
 _site
-.env
+*.ini
 node_modules
+.cache
+/assets/img
 .DS_Store
+*:Zone.Identifier
