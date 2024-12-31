@@ -18,29 +18,28 @@ const globalSiteData = {
 
 module.exports = function(eleventyConfig) {
 
+  /* --- COLLECTIONS --- */
+  eleventyConfig.addCollection('posts', function(collectionApi) {
+    return collectionApi.getFilteredByGlob('src/blog/posts/**/*.md')
+  });
+
+
   /* --- GLOBAL DATA --- */
-  
   eleventyConfig.addGlobalData("site", globalSiteData);
 
+
   /* --- YAML SUPPORT --- */
-  
   eleventyConfig.addDataExtension("yaml", contents => yaml.load(contents));
   eleventyConfig.addDataExtension("yml", contents => yaml.load(contents));
 
-  /* --- PASSTHROUGHS --- */
-
-  eleventyConfig.addPassthroughCopy('src/assets/css')
-	eleventyConfig.addPassthroughCopy('src/assets/js')
-
 
   /* --- PLUGINS --- */
-
   eleventyConfig.addPlugin(pluginRss); // just includes absolute url helper function
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
   eleventyConfig.addPlugin(EleventyVitePlugin, {});
 
-  /* --- SHORTCODES --- */
 
+  /* --- SHORTCODES --- */
   // Image shortcode config
   let defaultSizesConfig = "(min-width: 1200px) 1400px, 100vw"; // above 1200px use a 1400px image at least, below just use 100vw sized image
 
@@ -80,6 +79,16 @@ module.exports = function(eleventyConfig) {
   });
 
 
+  /* --- PASSTHROUGHS --- */
+  // eleventyConfig.addPassthroughCopy('./assets/**/*.*');
+  eleventyConfig.addPassthroughCopy('src/assets/css');
+  eleventyConfig.addPassthroughCopy('src/assets/js');
+  eleventyConfig.addPassthroughCopy('./src/_redirects');
+  eleventyConfig.addPassthroughCopy('./src/admin/assets/**/*.*');
+  eleventyConfig.addPassthroughCopy('./src/admin/identity/**/*.html');
+  eleventyConfig.addWatchTarget('./assets/**/*.*');
+
+
   /* --- BASE CONFIG --- */
 
   return {
@@ -93,5 +102,6 @@ module.exports = function(eleventyConfig) {
     templateFormats: ["njk", "md"],
     htmlTemplateEngine: "njk",
     markdownTemplateEngine: "njk",
+    dataTemplateEngine: 'njk',
   };
 };
