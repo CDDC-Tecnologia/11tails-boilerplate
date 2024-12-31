@@ -1,0 +1,52 @@
+{%- set schemaCanonical -%}
+  {{- meta.canonical | default(page.url) | url -}}{%- endset -%}
+{%- set schemaTitle -%}
+  {{- meta.meta_title | default(title) -}}{%- endset -%}
+{%- set schemaDescription -%}
+  {{- meta.meta_desc | default(description) -}}{%- endset -%}
+{%- set schemaImage -%}
+  {{- meta.meta_image | default(imgs[0].src) | default(site.logo) | cdn -}}{%- endset -%}
+{%- set schemaFavicon -%}
+  {{- site.favicon | default(site.logo) | cdn -}}{%- endset -%}
+{%- set schemaRobots -%}
+  {{- meta.robots | default(site.seo.robots) -}}{%- endset -%}
+{%- set schemaAuthor -%}
+  {{- author | default(site.name) -}}{%- endset -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "WebPage",
+  "name": "{{ schemaTitle }}",
+          "description": "{{ schemaDescription }}"
+          
+      {%- set mainEntity = meta.schema_type -%}
+      {% if mainEntity === 'Article' %}
+        {%- include 'core/schema/Article.json' %}
+
+        {%- elif mainEntity === 'BlogPosting' %},
+        {%- include 'core/schema/BlogPosting.json' %}
+
+        {%- elif mainEntity === 'Event' %},
+        {%- include 'core/schema/Event.json' %}
+        
+        {%- elif mainEntity === 'LocalBusiness' %},
+        {%- include 'core/schema/LocalBusiness.json' %}
+        
+        {%- elif mainEntity === 'OfferCatalog' %},
+        {%- include 'core/schema/OfferCatalog.json' %}
+        
+        {%- elif mainEntity === 'Person' %},
+        {%- include 'core/schema/Person.json' %}
+        
+        {%- elif mainEntity === 'Product' %},
+        {%- include 'core/schema/Product.json' %}
+        
+        {%- elif mainEntity === 'Service' %},
+        {%- include 'core/schema/Service.json' %}
+
+        {% else %}
+        {%- include 'core/schema/LocalBusiness.json' %}
+
+      {%- endif %}
+}
+</script>

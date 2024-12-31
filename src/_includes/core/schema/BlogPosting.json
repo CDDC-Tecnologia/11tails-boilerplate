@@ -1,0 +1,32 @@
+"mainEntity": {
+    "@type": "BlogPosting",
+    "url": "{{ site.url }}{{ page.url }}",
+    "name": "{{ title_clean }}",
+    "headline": "{{ body | truncate: 180 }}",
+    "keywords": "{{ page.tags | join: ',' }}",
+    "description": "{{ description }}",
+    "articleBody": "{{ body }}",
+    "datePublished": "{{ page.date }}",
+    "dateModified": "{{ page.last_modified_at | default: page.date }}",
+    "author": {
+        "@type": "Person",
+        "name": "{{ author }}"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "{{ global_name }}",
+        "url": "{{ site.url }}",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ site.img.cdn }}{{ site.data.site.logo }}"
+        }
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ site.url }}"
+    },
+    "image": {
+        "@type": "ImageObject",
+        "url": "{{ image }}"
+    }
+}

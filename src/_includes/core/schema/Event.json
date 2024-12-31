@@ -1,0 +1,32 @@
+"mainEntity": {
+    "@type": "Event",
+    "name": "{{ title_clean }}",
+    "sponsor": {
+    "@type": "Organization",
+    "name": "{{ page.sponsor.name }}",
+    "url": "{{ page.sponsor.link}}"
+        },
+    "startDate": "{{ page.offer.from }}",
+    "offers": [
+    {
+        "@type": "Offer",
+        "url": "{{ site.url }}",
+        "price": "{{ page.offer.price }}",
+        "priceCurrency": "{{ page.offer.currency }}"
+    }
+    ],
+    "description": "{{ description }}",
+    "location": {
+        "@type": "Place",
+        "name": "{{ page.address.city }}, {{ page.address.state }}",
+        "address" : {
+            "@type" : "PostalAddress",
+            "streetAddress" : "{{ page.address.street }} {{ page.address.number }} {{ page.address.line2 }} {{ page.address.neighborhood }}",
+            "addressLocality" : "{{ page.address.city }}",
+            "addressRegion" : "{{ page.address.state }}",
+            "postalCode": "{{ page.address.postal }}",
+            "addressCountry": "{{ page.address.country }}",
+            "contactType": "Mailing address"
+        }
+    }
+}

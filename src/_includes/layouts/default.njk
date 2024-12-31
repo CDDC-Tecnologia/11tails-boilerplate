@@ -1,0 +1,28 @@
+{% extends "layouts/wrapper.njk" %}
+
+{% block body %}
+<main>
+  {{ content | safe }}
+</main>
+{% endblock %}
+
+{#
+  <header>
+    <sup>Menu</sup>
+    <ul>
+      {%- for item in collections.all -%}
+      <li><a href="{{ item.url }}">{{ item.data.title }} 👉 ({{ item.url }}) ♦️ {{ item.date | newsDate }} </a></li>
+      {%- endfor -%}
+    </ul>
+  </header>
+  <main>
+    <h1>{{ title }}</h1>
+    <h2>Tags</h2>
+    <ul>
+      {% for tag in tags %}
+      <li><a href="/tags/{{ tag | slugify }}">{{ tag }}</a></li>
+      {% endfor %}
+    </ul>
+    {{ content | safe }}
+  </main>
+  #}

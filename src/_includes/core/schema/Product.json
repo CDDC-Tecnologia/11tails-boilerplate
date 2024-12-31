@@ -1,0 +1,23 @@
+"mainEntity": {
+    "@type" : "Product",
+    "@id": "{{ page.url }}",
+    "name" : "{{ title_clean }}",
+    "image": "{{ image }}",
+    "description" : "{{ description }}",
+    "offers": {
+        "@type": "Offer",
+        "url": "{{ page.url }}",
+        "priceCurrency": "{{ page.currency | default: site.data.seo.currency }}",
+        "price": "{%- if page.price_promo -%}{{ page.price_promo }}{%- else -%}{{ page.price }}{%- endif -%}",
+        "availability": "http://schema.org/InStock",
+        "seller": {
+            "@type": "Organization",
+            "name": "{{ global_name }}"
+        }
+    },
+    "brand" : {
+        "@type" : "Brand",
+        "name" : "{{ global_name }}",
+        "logo" : "{{ site.img.cdn }}{{ site.data.site.logo }}"
+    }
+}

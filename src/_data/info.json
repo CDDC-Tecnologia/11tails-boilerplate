@@ -1,0 +1,14 @@
+{
+  "offcanvas": {
+    "enabled": true,
+    "position": "bottom",
+    "title": "⚠️ Atualizamos nossas contas bancárias",
+    "text": "Gostaríamos de informar que houve uma atualização em relação à conta bancária destinada aos pagamentos referentes à segunda via e cancelamento de cartões. A conta anterior do Santander não estará mais em uso para esses serviços. A partir de agora, solicitamos que todos os pagamentos relacionados à segunda via e cancelamento de cartões sejam realizados no seguinte banco: Nome do Banco: Banco Itaú Se tiver alguma dúvida ou precisar de assistência adicional, não hesite em entrar em contato conosco."
+  },
+  "documents": {
+    "contrato_pj": "/assets/docs/contratos/contrato_pj.pdf",
+    "contrato_pf": "/assets/docs/contratos/contrato_pf.pdf",
+    "termo_lgpd": "/assets/docs/politicas/1-termo-aditivo-betimcard-lgpd_133434.pdf",
+    "sigom": "https://sistema2.betimcard.com/wbc-st5/login.faces?uat=5"
+  }
+}

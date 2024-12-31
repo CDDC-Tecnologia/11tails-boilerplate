@@ -1,0 +1,17 @@
+"mainEntity": {
+    "@context": "https://schema.org/",
+    "@type": "Service",
+    "name": "{{ title_clean }}",
+    "image": "{{ image }}",
+    "description": "{{ description }}",
+    "url": "{{ site.url }}{{ page.url }}",
+    "brand": "{{ page.brand | default: global_name }}",
+    "provider": {
+        "@type": "LocalBusiness",
+        "name": "{{ global_name }}"
+    },
+    "areaServed": {
+        "@type": "State",
+        "name": "{{ site.data.site.address.state }}"
+    }
+}

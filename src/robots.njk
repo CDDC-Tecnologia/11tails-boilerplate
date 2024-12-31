@@ -1,0 +1,13 @@
+---
+permalink: /robots.txt
+eleventyExcludeFromCollections: true
+---
+User-agent: *
+Disallow: /tags/
+Disallow: /admin/
+Disallow: /enviado/
+Disallow: /404/
+Disallow: *?query=
+Disallow: /cdn-cgi/
+
+Sitemap: {{ '/sitemap.xml' | toAbsoluteUrl }}

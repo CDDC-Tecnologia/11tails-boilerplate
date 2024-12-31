@@ -1,0 +1,18 @@
+"mainEntity": {
+    "author": {
+        "@type": "Person",
+        "name": "{{ title_clean }}",
+        "email": "{{ page.contact.email }}",
+        "image": "{{ site.img.cdn }}{{ pg_image }}",
+        "jobTitle": "{{ page.position }}",
+        "telephone": "{{ page.contact.phone }}",
+        "address" : {
+        "@type" : "PostalAddress",
+        "addressLocality" : "{{ page.address.city }}",
+        "addressRegion" : "{{ page.address.state }}",
+        "postalCode": "{{ page.address.postal }}",
+        "addressCountry": "{{ page.address.country }}",
+        "contactType": "Mailing address"
+        }
+        }
+    }

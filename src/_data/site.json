@@ -1,0 +1,125 @@
+{
+  "name": "Betim Card",
+  "description": "Embarque mais rápido e sem filas com o Betim Card. Cartão recarregável de passagens na cidade de Betim/MG, fácil de adquirir e recarregar.",
+  "logo": "/assets/img/icon/betimcard-logo.png",
+  "logo_white": "/assets/img/icon/betimcard-logo.png",
+  "favicon": "/assets/img/cartoes/cartao-cidadao-frente.png",
+  "tax_id": "30.660.485/0001-00",
+  "legal_name": "Coletivos Santa Edwiges ltda.",
+  "since": 2016,
+  "contact": {
+    "email": "betimcard@betimcard.com",
+    "country_code": 55,
+    "phone": "(31) 3539-5125",
+    "mobile": "(31) 99426-0107"
+  },
+  "address": {
+    "street": "R. Espírito Santo",
+    "number": 655,
+    "line2": "Sala 08",
+    "neighborhood": "Decamao",
+    "city": "Betim",
+    "state": "MG",
+    "country": "Brazil",
+    "postal": "32603-064",
+    "lat": "-19.9667641",
+    "lon": "-44.2111784"
+  },
+  "social": {
+    "gmaps": "https://maps.app.goo.gl/7sWUewBQgvaFt6CM9",
+    "whatsapp": "https://wa.me/5531999999999/",
+    "facebook": "https://www.facebook.com/",
+    "github": "https://www.github.com/",
+    "instagram": "https://www.instagram.com/",
+    "linkedin": "https://www.linkedin.com/",
+    "pinterest": "https://www.pinterest.com/",
+    "tiktok": "https://www.tiktok.com/",
+    "twitter": "https://www.twitter.com/"
+  },
+  "share": {
+    "whatsapp": "https://wa.me/send?text=Veja só o que eu encontrei: ",
+    "facebook": "https://www.facebook.com/sharer/sharer.php?u=",
+    "linkedin": "https://www.linkedin.com/sharing/share-offsite/?url=",
+    "twitter": "https://twitter.com/intent/tweet?text="
+  },
+  "api": {
+    "email": "https://usebasin.com/f/1d6babe22452",
+    "form_pj": "https://usebasin.com/f/0801328ad1a8",
+    "form_pf": "https://usebasin.com/f/8aef8d41b95c"
+  },
+  "seo": {
+    "lang": "pt-br",
+    "utm": "?utm_source=betimcard&utm_medium=website&utm_campaign=cddc&utm_id=cddc",
+    "creator": "Betim Card",
+    "publisher": "Betim Card",
+    "author": null,
+    "currency": "BRL",
+    "category": null,
+    "keywords": "cartao onibus transporte",
+    "og_type": "website",
+    "og_locale": "pt_br",
+    "robots": "index,follow",
+    "schema_type": "LocalBusiness",
+    "articleSection": null,
+    "brand": null,
+    "serviceType": "Transporte Público"
+  },
+  "style": {
+    "clr": [
+      {
+        "hex": "#f39020"
+      },
+      {
+        "hex": "#052e53"
+      },
+      {
+        "hex": "#d77327"
+      }
+    ]
+  },
+  "gdpr": {
+    "legal_name": "Coletivos Santa Edwiges ltda.",
+    "short_name": "Betim Card",
+    "dpo": {
+      "title": "Coletivos Santa Edwiges ltda.",
+      "email": "betimcard@betimcard.com"
+    }
+  },
+  "scripts": {
+    "head": "<script>var _paq=window._paq=window._paq||[];_paq.push([\"disableCookies\"]);_paq.push(['trackPageView']);_paq.push(['enableLinkTracking']);(function(){var u=\"https://stats.raszio.com/\";_paq.push(['setTrackerUrl',u+'matomo.php']);_paq.push(['setSiteId','83']);var d=document,g=d.createElement('script'),s=d.getElementsByTagName('script')[0];g.async=true;g.src=u+'matomo.js';s.parentNode.insertBefore(g,s)})();</script>",
+    "body": "",
+    "footer": ""
+  },
+  "business_hours": [
+    {
+      "weekday": "Monday",
+      "weekday_br": "Segunda",
+      "opens": "08:00",
+      "closes": "17:30"
+    },
+    {
+      "weekday": "Tuesday",
+      "weekday_br": "Terça",
+      "opens": "08:00",
+      "closes": "17:30"
+    },
+    {
+      "weekday": "Wednesday",
+      "weekday_br": "Quarta",
+      "opens": "08:00",
+      "closes": "17:30"
+    },
+    {
+      "weekday": "Thursday",
+      "weekday_br": "Quinta",
+      "opens": "08:00",
+      "closes": "17:30"
+    },
+    {
+      "weekday": "Friday",
+      "weekday_br": "Sexta",
+      "opens": "08:00",
+      "closes": "17:30"
+    }
+  ]
+}

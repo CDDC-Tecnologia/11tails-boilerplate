@@ -1,0 +1,26 @@
+"mainEntity": {
+    "@type" : "LocalBusiness",
+    "name" : "{{ global_name }}",
+    "image" : "{{ site.img.cdn }}{{ site.data.site.logo }}",
+    "telephone" : "+{{ site.data.site.contact.phone }}",
+    "email" : "{{ site.data.site.contact.email }}",
+    "address" : {
+    "@type" : "PostalAddress",
+    "streetAddress" : "{{ site.data.site.address.street }} {{ site.data.site.address.number }} {{ site.data.site.address.line2 }} {{ site.data.site.address.neighborhood }}",
+    "addressLocality" : "{{ site.data.site.address.city }}",
+    "addressRegion" : "{{ site.data.site.address.state }}",
+    "postalCode": "{{ site.data.site.address.postal }}",
+    "addressCountry": "{{ site.data.site.address.country }}",
+    "contactType": "Mailing address"
+    },
+    "openingHoursSpecification": [
+    {%- for openingHours in site.data.site.business_hours %}
+    {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": "http://schema.org/{{ openingHours.weekday }}",
+    "opens": "{{ openingHours.opens | append: ':00' }}",
+    "closes": "{{ openingHours.closes | append: ':00' }}"
+    }{%- if forloop.last == false %},{%- else %}{%- endif %}
+    {%- endfor %}
+    ]
+}

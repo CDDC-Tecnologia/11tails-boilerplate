@@ -1,0 +1,32 @@
+"mainEntity": {
+    "@context": "https://schema.org/",
+    "@type": "Service",
+    "serviceType": "{{ site.data.seo.serviceType }}",
+    "provider": {
+        "@type": "LocalBusiness",
+        "name": "{{ global_name }}"
+    },
+    "areaServed": {
+        "@type": "State",
+        "name": "{{ site.data.site.address.state }}"
+    },
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "{{ site.data.seo.serviceType }}",
+        "itemListElement": [
+        {%- for item in site.servicos %}
+        {
+            "@type": "Offer",
+            "itemOffered": {
+            "@type": "Service",
+            "name": "{{ item.title }}",
+            "image": "{{ item.imgs[0].src }}",
+            "description": "{{ item.description }}",
+            "url": "{{ page.url }}",
+            "brand": "{{ global_name }}"
+            }
+        }{%- if forloop.last == false %},{%- else %}{%- endif %}
+        {%- endfor %}
+        ]
+    }
+}

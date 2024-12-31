@@ -1,0 +1,54 @@
+{%- set globalCanonical -%}
+  {{- meta.canonical | default(page.url) -}}{%- endset -%}
+{%- set globalTitle -%}
+  {{- meta.meta_title | default(title) -}}{%- endset -%}
+{%- set globalDescription -%}
+  {{- meta.meta_desc | default(description) -}}{%- endset -%}
+{%- set globalImage -%}
+  {{- meta.meta_image | default(imgs[0].src) | default(site.logo) | cdn -}}{%- endset -%}
+{%- set globalFavicon -%}
+  {{- site.favicon | default(site.logo) | cdn -}}{%- endset -%}
+{%- set globalRobots -%}
+  {{- meta.robots | default(site.seo.robots) -}}{%- endset -%}
+{%- set globalAuthor -%}
+  {{- author | default(site.name) -}}{%- endset -%}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="{{ site.style.clr[0].hex }}"/>
+<meta name="robots" content="{{ globalRobots }}">
+<meta name="publisher" content="CDDC Soluções em Tecnologia" />
+<meta name="author" content="{{ globalAuthor }}">
+<title>{{ globalTitle }}</title>
+<link rel="canonical" href="{{ globalCanonical | toAbsoluteUrl }}" />
+<meta name="description" content="{{ globalDescription }}">
+<meta property="og:site_name" content="{{ site.name }}" />
+<meta property="og:title" content="{{ globalTitle }}" />
+<meta property="og:description" content="{{ globalDescription }}" />
+<meta property="og:image:secure_url" content="{{ globalImage }}&output=jpg&w=300&h=300&fit=contain" />
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:url" content="{{ globalCanonical | url }}" />
+<meta property="og:type" content="{{ meta.og_type }}" />
+<meta property="og:locale" content="{{ meta.og_locale }}" />
+<meta property="og:image:width" content="300">
+<meta property="og:image:height" content="300">
+<meta name="twitter:title" content="{{ globalTitle }}">
+<meta name="twitter:description" content="{{ globalDescription }}">
+<meta name="twitter:image" content="{{ globalImage }}&output=jpg&w=300&h=300&fit=contain">
+<meta name="msapplication-TileImage" content="{{ globalImage }}&output=jpg&w=300&h=300&fit=contain">
+{{- page.meta.meta_custom.code }}
+<meta name="generator" content="Eleventy">
+<link rel="shortcut icon" href="{{ globalFavicon }}&w=96&h=96&fit=contain">
+<link rel="apple-touch-icon" sizes="36x36" href="{{ globalFavicon }}&w=36&h=36&fit=contain">
+<link rel="apple-touch-icon" sizes="48x48" href="{{ globalFavicon }}&w=48&h=48&fit=contain">
+<link rel="apple-touch-icon" sizes="72x72" href="{{ globalFavicon }}&w=72&h=72&fit=contain">
+<link rel="apple-touch-icon" sizes="96x96" href="{{ globalFavicon }}&w=96&h=96&fit=contain">
+<link rel="apple-touch-icon" sizes="144x144" href="{{ globalFavicon }}&w=144&h=144&fit=contain">
+<link rel="apple-touch-icon" sizes="192x192" href="{{ globalFavicon }}&w=192&h=192&fit=contain">
+<link rel="apple-touch-icon" sizes="512x512" href="{{ globalFavicon }}&w=512&h=512&fit=contain">
+<link rel="icon" sizes="36x36" href="{{ globalFavicon }}&w=36&h=36&fit=contain">
+<link rel="icon" sizes="48x48" href="{{ globalFavicon }}&w=48&h=48&fit=contain">
+<link rel="icon" sizes="72x72" href="{{ globalFavicon }}&w=72&h=72&fit=contain">
+<link rel="icon" sizes="96x96" href="{{ globalFavicon }}&w=96&h=96&fit=contain">
+<link rel="icon" sizes="144x144" href="{{ globalFavicon }}&w=144&h=144&fit=contain">
+<link rel="icon" sizes="192x192" href="{{ globalFavicon }}&w=192&h=192&fit=contain">
+<link rel="icon" sizes="512x512" href="{{ globalFavicon }}&w=512&h=512&fit=contain">

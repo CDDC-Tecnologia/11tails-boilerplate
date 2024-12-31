@@ -1,0 +1,27 @@
+{%- set meta_title -%}
+  {{ meta.meta_title }}{%- endset -%}
+{%- set meta_desc -%}
+  {{ meta.meta_desc }}{%- endset -%}
+{%- set meta_image -%}
+  {{ meta.meta_image }}{%- endset -%}
+{%- set meta_canonical -%}
+  {{ meta.canonical }}{%- endset -%}
+{%- set pg_title -%}
+  {{ title }}{%- endset -%}
+{%- set pg_content -%}
+  {{ content }}{%- endset -%}
+{%- set pg_image -%}
+  {{ imgs[0].src | cdn }}{%- endset -%}
+{%- set pg_author -%}
+  {{ author }}{%- endset -%}
+{%- set global_name -%}
+  {{ site.data.site.name }}{%- endset -%}
+{%- set global_desc -%}
+  {{ site.data.site.description }}{%- endset -%}
+
+{%- set squote -%}'{%- endset -%}
+{%- set dquote -%}"{%- endset -%}
+
+{%- set utitle -%}
+  {{ meta_title | default(pg_title) }}
+{%- endset -%}

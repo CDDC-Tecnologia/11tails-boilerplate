@@ -1,0 +1,17 @@
+"mainEntity": {
+    "@type": "Article",
+    "name": "{{ title_clean }}",
+    "author": {
+        "@type": "Person",
+        "name": "{{ author }}"
+    },
+    "datePublished": "{{ page.date }}",
+    "image": "{{ image }}",
+    "articleSection": "{{ category }}",
+    "articleBody": {{ body | jsonify }},
+    "url": "{{ site.url }}{{ page.url }}",
+    "publisher": {
+        "@type": "Organization",
+        "name": "{{ global_name }}"
+    }
+}

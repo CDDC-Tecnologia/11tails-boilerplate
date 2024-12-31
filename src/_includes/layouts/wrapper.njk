@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="{{ lang }}">
+<head>
+{%- include 'theme/assets/preload.njk' %}
+{%- include 'core/meta.njk' %}
+{% include 'theme/assets/head.njk' %}
+{{- site.scripts.head | safe }}
+{{- scripts.head | safe }}
+{%- include 'core/pwa.njk' %}
+{% include 'core/schema/json.njk' %}
+<!--[if IE 6]> 
+█ CDDC HOSPEDAGEM, SEO E SITES
+█ PERFORMANCE COMPROVADA EM RELATÓRIO OU SEU DINHEIRO DE VOLTA
+█ POSICIONE MELHOR NO GOOGLE SEM PAGAR TRÁFEGO
+█ VISITE: CDDC.COM.BR
+_██████╗██████╗ ██████╗  ██████╗
+██╔════╝██╔══██╗██╔══██╗██╔════╝
+██║     ██║  ██║██║  ██║██║     
+██║     ██║  ██║██║  ██║██║     
+╚██████╗██████╔╝██████╔╝╚██████╗
+╚═════╝╚═════╝ ╚═════╝  ╚═════╝ 
+<![endif]-->
+</head>
+<body>
+  {{- site.scripts.body | safe }}
+  {{- scripts.body | safe }}
+  {%- include 'theme/assets/body.njk' -%}
+  {%- block header %}{% endblock %}
+  {%- block body %}{% endblock %}
+  {%- include 'theme/assets/footer.njk' -%}
+  {{ site.scripts.footer | safe }}
+  {{ scripts.footer | safe }}
+  <script type="text/javascript" cookie-consent="strictly-necessary" src="{{ '/assets/js/quicklink.umd.js' | url }}"></script>
+  <script cookie-consent="strictly-necessary">window.addEventListener('load',()=>{quicklink.listen()});</script>
+  {%- block footer_scripts %}{% endblock %}
+</body>
+</html>
