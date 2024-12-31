@@ -1,0 +1,10 @@
+{
+  "layout": "post.njk",
+  "author": "Betim Card",
+  "meta": {
+    "og_type": "product",
+    "og_locale": "pt_br",
+    "schema_type": "Product",
+    "robots": "index,follow"
+  }
+}

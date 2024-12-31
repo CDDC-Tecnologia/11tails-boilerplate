@@ -1,0 +1,12 @@
+{
+  "layout": "post.njk",
+  "permalink": "/forms/{{ page.fileSlug }}/",
+  "tags": "forms",
+  "author": "Betim Card",
+  "meta": {
+    "og_type": "article",
+    "og_locale": "pt_br",
+    "schema_type": "BlogPosting",
+    "robots": "index,follow"
+  }
+}

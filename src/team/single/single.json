@@ -1,0 +1,14 @@
+{
+  "layout": "post.njk",
+  "permalink": "/equipe/{{ page.fileSlug }}/",
+  "tags": "team",
+  "eleventyComputed": {
+    "author": "{{ title }}"
+  },
+  "meta": {
+    "og_type": "profile",
+    "og_locale": "pt_br",
+    "schema_type": "Person",
+    "robots": "index,follow"
+  }
+}

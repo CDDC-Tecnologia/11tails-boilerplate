@@ -1,0 +1,11 @@
+{
+  "layout": "post.njk",
+  "permalink": "/faq/{{ page.fileSlug }}/",
+  "tags": "faq",
+  "meta": {
+    "og_type": "article",
+    "og_locale": "pt_br",
+    "schema_type": "BlogPosting",
+    "robots": "index,follow"
+  }
+}

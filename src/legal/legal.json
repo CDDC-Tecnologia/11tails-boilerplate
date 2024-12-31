@@ -1,0 +1,10 @@
+{
+  "layout": "default.njk",
+  "author": "Betim Card",
+  "meta": {
+    "og_type": "article",
+    "og_locale": "pt_br",
+    "schema_type": "BlogPosting",
+    "robots": "index,follow"
+  }
+}
