@@ -1,0 +1,696 @@
+# IMPORTANTE:
+# ALTERAR O REPOSITORIO ANTES DE USAR
+# Alterar o 'name' e 'file' das coleções correspondentes ao projeto emquestão
+# Alterar campo default do layout de cada collection
+# Emoji https://emojipedia.org
+
+# backend:
+#   name: test-repo
+
+# local_backend: true # npx netlify-cms-proxy-server
+
+backend:
+  name: git-gateway
+  repo: CDDC-Tecnologia/betimcard-11ty
+  branch: "main"
+
+site_url: https://cddc.com.br
+display_url: https://cddc.com.br
+logo_url: https://cddc.com.br/images/cddc.png
+
+media_folder: 'assets/img/uploads'
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+
+collections:
+  - name: 'config'
+    label: 'Configurações'
+    editor:
+      preview: false
+    description: >
+      😃 BEM VINDO AO NOSSO EDITOR DE SITE! Qualquer dúvida, utilize os botão de ajuda no canto inferior da tela. 
+      💬 Nessa tela você definições as configurações globais do seu site, como endereço, telefone e códigos de rastreio.
+    files:
+      - name: site
+        label: Configurações do site
+        file: src/_data/site.json
+        fields:
+          - {label: Nome do site, name: name, widget: string}
+          - {label: 'Descrição (130 caracteres)' , name: 'description', widget: 'string'}
+          # - {label: Logomarca, name: logo, widget: image}
+          # - {label: Logo (modo contraste), name: logo_white, widget: image}
+          # - {label: Favicon, name: favicon, widget: image}
+          - {label: Razão Social, name: legal_name, widget: string, required: false }
+          - {label: CPF / CNPJ, name: tax_id, widget: string, required: false, hint: Insira o CNPJ com a devida pontuação}
+          - {label: Ano de abertura, name: since, widget: number, required: false}
+          # - {label: Idioma, name: lang, widget: string, default: 'pt-br', hint: Código idiomático ISO-639 seguido pelo código geografico ISO-3166.}
+
+          - label: Informações de contato
+            name: contact
+            widget: object
+            collapsed: true
+            minimize_collapsed: true
+            fields:
+            - {label: Email, name: email, widget: string, required: false, pattern: ['[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+', "O e-mail inserido é inválido"]}
+            - {label: Cód do país, name: country_code, widget: string, required: false, default: 55, hint: Código telefônico do país }
+            - {label: Telefone, name: phone, widget: string, required: false, hint: Insira o número com a devida pontuação }
+            - {label: Celular, name: mobile, widget: string, required: false, hint: Insira o número com a devida pontuação }
+
+          - label: Endereço
+            name: address
+            widget: object
+            collapsed: true
+            minimize_collapsed: true
+            fields:
+            - {label: Rua, name: street, widget: string, required: false }
+            - {label: Número, name: number, widget: string, required: false }
+            - {label: Complemento, name: line2, widget: string, required: false }
+            - {label: Bairro, name: neighborhood, widget: string, required: false }
+            - {label: Cidade, name: city, widget: string, required: false }
+            - {label: Estado, name: state, widget: string, required: false }
+            - {label: CEP, name: postal, widget: string, required: false }
+            - {label: País, name: country, widget: select, options: ['', 'Abecásia', 'Afeganistão', 'África do Sul', 'Albânia', 'Alemanha', 'Andorra', 'Angola', 'Antígua e Barbuda', 'Arábia Saudita', 'Argélia', 'Argentina', 'Armênia', 'Austrália', 'Áustria', 'Azerbaijão', 'Bahamas', 'Bahrein', 'Bangladesh', 'Barbados', 'Bélgica', 'Belize', 'Benim', 'Bielorrússia', 'Bolívia', 'Bósnia e Herzegovina', 'Botswana', 'Brasil', 'Brunei', 'Bulgária', 'Burkina Faso', 'Burundi', 'Butão', 'Cabo Verde', 'Camarões', 'Camboja', 'Canadá', 'Catar', 'Cazaquistão', 'Chade', 'Chile', 'China', 'Chipre', 'Cingapura', 'Colômbia', 'Comores', 'Congo', 'Coreia do Norte', 'Coreia do Sul', 'Costa do Marfim', 'Costa Rica', 'Croácia', 'Cuba', 'Dinamarca', 'Djibouti', 'Dominica', 'Egito', 'El Salvador', 'Emirados Árabes Unidos', 'Equador', 'Eritreia', 'Escócia', 'Eslováquia', 'Eslovênia', 'Espanha', 'Estados Federados da Micronésia', 'Estados Unidos da América', 'Estônia', 'Eswatini', 'Etiópia', 'Fiji', 'Filipinas', 'Finlândia', 'França', 'Gabão', 'Gâmbia', 'Gana', 'Geórgia', 'Granada', 'Grécia', 'Guatemala', 'Guiana', 'Guiné', 'Guiné-Bissau', 'Guiné Equatorial', 'Haiti', 'Holanda', 'Honduras', 'Hungria', 'Iêmen', 'Índia', 'Indonésia', 'Inglaterra', 'Irã', 'Iraque', 'Irlanda do Norte', 'Irlanda', 'Islândia', 'Israel', 'Itália', 'Jamaica', 'Japão', 'Jordânia', 'Kiribati', 'Kosovo', 'Kuwait', 'Laos', 'Lesoto', 'Letônia', 'Líbano', 'Libéria', 'Líbia', 'Liechtenstein', 'Lituânia', 'Luxemburgo', 'Macedônia do Norte', 'Madagascar', 'Malásia', 'Malawi', 'Maldivas', 'Mali', 'Malta', 'Marrocos', 'Marshall', 'Maurícia', 'Mauritânia', 'México', 'Mianmar', 'Micronésia', 'Moçambique', 'Moldávia', 'Mônaco', 'Mongólia', 'Montenegro', 'Namíbia', 'Nauru', 'Nepal', 'Nicarágua:', 'Níger', 'Nigéria', 'Noruega', 'Nova Zelândia', 'Omã', 'Ossétia do Sul', 'País de Gales', 'Países Baixos', 'Palau', 'Palestina', 'Panamá', 'Papua-Nova Guiné', 'Paquistão', 'Paraguai', 'Peru', 'Polônia', 'Portugal', 'Qatar', 'Quênia', 'Quirguistão', 'Quiribati', 'Reino Unido', 'República Árabe Saaraui Democrática', 'República Centro-Africana', 'República Democrática do Congo', 'República do Congo', 'República Dominicana', 'República Tcheca', 'República Turca de Chipre do Norte', 'Romênia', 'Ruanda', 'Rússia', 'Salomão', 'Samoa', 'San Marino', 'Santa Lúcia', 'São Cristóvão e Névis', 'São Tomé e Príncipe', 'São Vicente e Granadinas', 'Senegal', 'Serra Leoa', 'Sérvia', 'Seychelles', 'Singapura', 'Síria', 'Somália', 'Sri Lanka', 'Suazilândia', 'Sudão do Sul', 'Sudão', 'Suécia', 'Suíça', 'Suriname', 'Tailândia', 'Taiwan', 'Tajiquistão', 'Tanzânia', 'Tchéquia', 'Timor-Leste', 'Togo', 'Tonga', 'Trinidad e Tobago', 'Tunísia', 'Turcomenistão', 'Turquia', 'Tuvalu', 'Ucrânia', 'Uganda', 'Uruguai', 'Uzbequistão', 'Vanuatu', 'Vaticano', 'Venezuela', 'Vietnã', 'Zâmbia', 'Zimbábue']}
+            - {label: Latitude, name: lat, widget: string, required: false }
+            - {label: Longitude, name: lon, widget: string, required: false }
+
+          - label: Redes sociais
+            name: social
+            widget: object
+            collapsed: true
+            minimize_collapsed: true
+            fields:
+            - {label: Facebook, name: facebook, widget: string, pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida'], required: false, hint: 'Não se esqueça do "https://". Exemplo: "https://facebook.com.br/"' }
+            - {label: Whatsapp, name: whatsapp, widget: string, pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida'], required: false, hint: 'Não se esqueça do "https://". Exemplo: "https://github.com.br/"' }
+            - {label: Instagram, name: instagram, widget: string, pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida'], required: false, hint: 'Não se esqueça do "https://". Exemplo: "https://instagram.com/"' }
+            - {label: Linkedin, name: linkedin, widget: string, pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida'], required: false, hint: 'Não se esqueça do "https://". Exemplo: "https://linkedin.com/"' }
+            - {label: Pinterest, name: pinterest, widget: string, pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida'], required: false, hint: 'Não se esqueça do "https://". Exemplo: "https://pinterest.com/"' }
+            - {label: Google Maps, name: gmaps, widget: string, pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida'], required: false, hint: 'Não se esqueça do "https://". Exemplo: "https://tiktok.com/"' }
+            - {label: Twitter, name: twitter, widget: string, pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida'], required: false, hint: 'Não se esqueça do "https://". Exemplo: "https://twitter.com/"' }
+
+          - label: Horário de funcionamento
+            name: business_hours
+            widget: list
+            collapsed: true
+            minimize_collapsed: true
+            fields:
+            - label: Dia da semana
+              name: weekday
+              widget: select
+              required: false
+              options:
+                - { label: Segunda, value: Monday }
+                - { label: Terça, value: Tuesday }
+                - { label: Quarta, value: Wednesday }
+                - { label: Quinta, value: Thursday }
+                - { label: Sexta, value: Friday }
+                - { label: Sábado, value: Saturday }
+                - { label: Domingo, value: Sunday }
+            - {label: Horário de abertura, name: opens, widget: select, options: ['00:00', '00:15', '00:30', '00:45', '01:00', '01:15', '01:30', '01:45', '02:00', '02:15', '02:30', '02:45', '03:00', '03:15', '03:30', '03:45', '04:00', '04:15', '04:30', '04:45', '05:00', '05:15', '05:30', '05:45', '06:00', '06:15', '06:30', '06:45', '07:00', '07:15', '07:30', '07:45', '08:00', '08:15', '08:30', '08:45', '09:00', '09:15', '09:30', '09:45', '10:00', '10:15', '10:30', '10:45', '11:00', '11:15', '11:30', '11:45', '12:00', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45', '14:00', '14:15', '14:30', '14:45', '15:00', '15:15', '15:30', '15:45', '16:00', '16:15', '16:30', '16:45', '17:00', '17:15', '17:30', '17:45', '18:00', '18:15', '18:30', '18:45', '19:00', '19:15', '19:30', '19:45', '20:00', '20:15', '20:30', '20:45', '21:00', '21:15', '21:30', '21:45', '22:00', '22:15', '22:30', '22:45', '23:00', '23:15', '23:30', '23:45', ], required: false}
+            - {label: Horário de fechamento, name: closes, widget: select, options: ['00:00', '00:15', '00:30', '00:45', '01:00', '01:15', '01:30', '01:45', '02:00', '02:15', '02:30', '02:45', '03:00', '03:15', '03:30', '03:45', '04:00', '04:15', '04:30', '04:45', '05:00', '05:15', '05:30', '05:45', '06:00', '06:15', '06:30', '06:45', '07:00', '07:15', '07:30', '07:45', '08:00', '08:15', '08:30', '08:45', '09:00', '09:15', '09:30', '09:45', '10:00', '10:15', '10:30', '10:45', '11:00', '11:15', '11:30', '11:45', '12:00', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45', '14:00', '14:15', '14:30', '14:45', '15:00', '15:15', '15:30', '15:45', '16:00', '16:15', '16:30', '16:45', '17:00', '17:15', '17:30', '17:45', '18:00', '18:15', '18:30', '18:45', '19:00', '19:15', '19:30', '19:45', '20:00', '20:15', '20:30', '20:45', '21:00', '21:15', '21:30', '21:45', '22:00', '22:15', '22:30', '22:45', '23:00', '23:15', '23:30', '23:45', ], required: false}
+
+          - label: Tema
+            name: style
+            widget: object
+            collapsed: true
+            minimize_collapsed: true
+            fields:
+            - label: "Cores"
+              name: "clr"
+              label_singular: 'Cor'
+              collapsed: true
+              minimize_collapsed: true
+              summary: '{{fields.hex}}'
+              widget: "list"
+              fields:
+                - {label: Cor, name: hex, widget: color}
+
+          - label: Scripts
+            name: scripts
+            widget: object
+            collapsed: true
+            minimize_collapsed: true
+            fields:
+              - {label: Scripts do <head>, name: head, widget: code, required: false, hint: Estes scripts serão inseridos antes do fechamento do <head>}
+              - {label: Scripts do início do <body>, name: body, widget: code, required: false, hint: Estes scripts serão inseridos após a abertura do <body>}
+              - {label: Scripts do final do <body>, name: footer, widget: code, required: false, hint: Estes scripts serão inseridos antes do fechamento do <body>}
+
+          - label: SEO
+            name: seo
+            widget: object
+            collapsed: true
+            minimize_collapsed: true
+            fields:
+            - {label: Idioma principal, name: lang, widget: string, required: false, hint: Idioma principal usado no site}
+            - {label: Autor, name: author, widget: string, required: false, hint: Nomes do autor padrão dos artigos}
+            - {label: Marca, name: brand, widget: string, required: false, hint: Marca padrão dos serviços e produtos}
+            - {label: Categoria, name: category, widget: string, required: false, hint: Categoria padrão dos artigos, serviços e produtos}
+            - {label: Palavras chave, name: keywords, widget: string, required: false, hint: Palavras-chave para buscadores}
+            - {label: Moeda, name: currency, widget: string, required: false, hint: Moeda padrão de comercialização dos produtos e serviços}
+            - {label: articleSection, name: articleSection, widget: string, required: false, hint: Categoria padrão dos artigos}
+            - {label: serviceType, name: serviceType, widget: string, required: false, hint: Ramo de atividade principal}
+            - {label: OG type, name: og_type, widget: select, required: false, hint: 'og:type padrão para todas as páginas do site', options: ['article', 'book', 'music.song', 'music.album', 'music.playlist', 'music.radio_station', 'profile', 'video.movie', 'video.episode', 'video.tv_show', 'video.other', 'website']}
+            - {label: OG locale, name: og_locale, widget: select, required: false, default: pt_br, hint: 'Define o idioma global do site no <head>', options: ['en_us', 'ca_es', 'cs_cz', 'cx_ph', 'cy_gb', 'da_dk', 'de_de', 'eu_es', 'en_pi', 'en_ud', 'ck_us', 'es_la', 'es_es', 'es_mx', 'gn_py', 'fi_fi', 'fr_fr', 'gl_es', 'ht_ht', 'hu_hu', 'it_it', 'ja_jp', 'ko_kr', 'nb_no', 'nn_no', 'nl_nl', 'fy_nl', 'pl_pl', 'pt_br', 'pt_pt', 'ro_ro', 'ru_ru', 'sk_sk', 'sl_si', 'sv_se', 'th_th', 'tr_tr', 'ku_tr', 'zh_cn', 'zh_hk', 'zh_tw', 'fb_lt', 'af_za', 'sq_al', 'hy_am', 'az_az', 'be_by', 'bn_in', 'bs_ba', 'bg_bg', 'hr_hr', 'nl_be', 'en_gb', 'eo_eo', 'et_ee', 'fo_fo', 'fr_ca', 'ka_ge', 'el_gr', 'gu_in', 'hi_in', 'is_is', 'id_id', 'ga_ie', 'jv_id', 'kn_in', 'kk_kz', 'ky_kg', 'la_va', 'lv_lv', 'li_nl', 'lt_lt', 'mi_nz', 'mk_mk', 'mg_mg', 'ms_my', 'mt_mt', 'mr_in', 'mn_mn', 'ne_np', 'pa_in', 'rm_ch', 'sa_in', 'sr_rs', 'so_so', 'sw_ke', 'tl_ph', 'ta_in', 'tt_ru', 'te_in', 'ml_in', 'uk_ua', 'uz_uz', 'vi_vn', 'xh_za', 'zu_za', 'km_kh', 'tg_tj', 'ar_ar', 'he_il', 'ur_pk', 'fa_ir', 'sy_sy', 'yi_de', 'qc_gt', 'qu_pe', 'ay_bo', 'se_no', 'ps_af', 'tl_st', 'gx_gr', 'my_mm', 'qz_mm', 'or_in', 'si_lk', 'rw_rw', 'ak_gh', 'nd_zw', 'sn_zw', 'cb_iq', 'ha_ng', 'yo_ng', 'ja_ks', 'lg_ug', 'br_fr', 'zz_tr', 'tz_ma', 'co_fr', 'ig_ng', 'as_in', 'am_et', 'lo_la', 'ny_mw', 'wo_sn', 'ff_ng', 'sc_it', 'ln_cd', 'tk_tm', 'sz_pl', 'bp_in', 'ns_za', 'tn_bw', 'st_za', 'ts_za', 'ss_sz', 'ks_in', 've_za', 'nr_za', 'ik_us', 'su_id', 'om_et', 'em_zm', 'qr_gr', 'iu_ca']}
+            - {label: Schema type, name: schema_type, widget: select, required: false, hint: 'JSON Schema padrão para todas as páginas do site', options: ['Article', 'BlogPosting', 'Event', 'LocalBusiness', 'OfferCatalog', 'Person', 'Product', 'Service']}
+            - {label: Robots, name: robots, widget: select, required: false, default: 'index,follow', hint: 'Método de indexação padrão para todas as páginas', options: ['index,follow', 'index,follow,noarchive', 'index,nofollow', 'noindex, nofollow']}
+
+          - label: LGPD / GDPR
+            name: gdpr
+            widget: object
+            collapsed: true
+            minimize_collapsed: true
+            fields:
+              - {label: Razão social, name: legal_name, widget: string, hint: 'Razão social a ser exibida nos contratos e termos' }
+              - {label: Nome curto, name: short_name, widget: string, hint: 'Nome curto para mencionar ao longo dos termos' }
+              - label: Informações do DPO
+                name: dpo
+                widget: object
+                collapsed: true
+                minimize_collapsed: true
+                fields:
+                - {label: Nome, name: title, widget: string, required: false}
+                - {label: Email, name: email, widget: string, required: false, pattern: ['[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+', "O e-mail inserido é inválido"]}
+
+      - name: info
+        label: Avisos e informações globais
+        file: src/_data/info.json
+        fields:
+          - label: Banner de aviso
+            name: offcanvas
+            widget: object
+            collapsed: true
+            minimize_collapsed: true
+            fields:
+            - {label: Habilitar?, name: enabled, widget: boolean, required: false }
+            - {label: Posição, name: position, widget: select, options: ["top", "bottom", "start", "end"], required: false }
+            - {label: Título, name: title, widget: string, required: false }
+            - {label: texto, name: text, widget: string, required: false }
+
+  - name: authors
+    label: Autores
+    label_singular: autor
+    folder: src/autores/autor
+    identifier_field: title
+    editor:
+      preview: false
+    create: true
+    slug: '{{slug}}'
+    clean_accents: true
+    description: >
+      💬 SUA EQUIPE É INCRÍVEL! Inclua aqui as pessoas responsáveis pelo sucesso da sua empresa. Vamos separar um espaço especial pra elas no seu site! 👸🤴😉
+    fields:
+      - {label: Título, name: title, widget: string}
+
+      - label: Imagem
+        name: imgs
+        label_singular: item
+        required: false
+        collapsed: true
+        minimize_collapsed: true
+        summary: '{{fields.src}}'
+        max: 10
+        widget: list
+        fields:
+          - {label: Imagem, name: src, widget: image }
+          - {label: Alt, name: alt, widget: string, required: false }
+
+      - {label: Ocupação, name: position, widget: string, required: false, hint: 'Insira a profissão / cargo ocupado'}
+      - {label: Data de nascimento, name: birth, widget: date, required: false}
+
+      - label: Nomes
+        name: names
+        widget: object
+        fields:
+        - {label: Primeiro nome, name: given, widget: string, required: false}
+        - {label: Sobrenome, name: family, widget: string, required: false}
+
+      - label: 'Informações de contato'
+        name: 'contact'
+        widget: 'object'
+        fields:
+        - {label: Email, name: email, widget: string, required: false, pattern: ['[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+', "O e-mail inserido é inválido"]}
+        - {label: Telefone, name: phone, widget: string, required: false, hint: Insira o número com a devida pontuação }
+        - {label: Celular, name: mobile, widget: string, required: false, hint: Insira o número com a devida pontuação }
+
+      - label: 'Endereço'
+        name: 'address'
+        widget: 'object'
+        fields:
+        - {label: 'Rua', name: 'street', widget: 'string', required: false}
+        - {label: 'Número', name: 'number', widget: 'string', required: false}
+        - {label: 'Complemento', name: 'line2', widget: 'string', required: false}
+        - {label: 'Bairro', name: 'neighborhood', widget: 'string', required: false}
+        - {label: 'Cidade', name: 'city', widget: 'string', required: false}
+        - {label: 'Estado', name: 'state', widget: 'string', required: false}
+        - {label: 'CEP', name: 'postal', widget: 'string', required: false}
+        - {label: 'País', name: 'country', widget: 'string', required: false, default: 'Brazil'}
+
+      - label: 'Redes sociais'
+        name: 'social'
+        widget: 'object'
+        fields:
+        - {label: Facebook, name: facebook, widget: string, pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida'], required: false, hint: 'Não se esqueça do "https://". Exemplo: "https://facebook.com.br/"' }
+        - {label: Whatsapp, name: whatsapp, widget: string, pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida'], required: false, hint: 'Não se esqueça do "https://". Exemplo: "https://github.com.br/"' }
+        - {label: Instagram, name: instagram, widget: string, pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida'], required: false, hint: 'Não se esqueça do "https://". Exemplo: "https://instagram.com/"' }
+        - {label: Linkedin, name: linkedin, widget: string, pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida'], required: false, hint: 'Não se esqueça do "https://". Exemplo: "https://linkedin.com/"' }
+        - {label: Pinterest, name: pinterest, widget: string, pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida'], required: false, hint: 'Não se esqueça do "https://". Exemplo: "https://pinterest.com/"' }
+        - {label: Google Maps, name: gmaps, widget: string, pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida'], required: false, hint: 'Não se esqueça do "https://". Exemplo: "https://tiktok.com/"' }
+        - {label: Twitter, name: twitter, widget: string, pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida'], required: false, hint: 'Não se esqueça do "https://". Exemplo: "https://twitter.com/"' }
+
+      - {label: 'Conteúdo', name: 'body', required: false, widget: 'markdown'}
+
+      # - {label: Permalink (avançado), name: permalink, widget: string, pattern: ['^[a-zA-Z0-9_/-]{1,}$',"Caracteres especiais e espaços são inválidos"], required: false, hint: 'Ex: /link/para-sua-pagina. ATENÇÃO: Alterar o Permalink de uma página existente pode prejudicar seu SEO'}  
+      - label: Meta Tags (avançado)
+        name: meta
+        collapsed: true
+        widget: object
+        fields:
+        - {label: Meta title, name: meta_title, widget: string, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Title"'}
+        - {label: Meta description, name: meta_desc, widget: string, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Description"'}
+        - {label: Meta image, name: meta_image, widget: image, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Image"'}
+        - {label: OG type, name: og_type, widget: select, required: false, hint: 'Este campo sobrescreve a meta tag og:type', options: ['article', 'book', 'music.song', 'music.album', 'music.playlist', 'music.radio_station', 'profile', 'video.movie', 'video.episode', 'video.tv_show', 'video.other', 'website']}
+        - {label: OG locale, name: og_locale, widget: select, required: false, default: pt_br, hint: 'Define o idioma da página no <head>', options: ['en_us', 'ca_es', 'cs_cz', 'cx_ph', 'cy_gb', 'da_dk', 'de_de', 'eu_es', 'en_pi', 'en_ud', 'ck_us', 'es_la', 'es_es', 'es_mx', 'gn_py', 'fi_fi', 'fr_fr', 'gl_es', 'ht_ht', 'hu_hu', 'it_it', 'ja_jp', 'ko_kr', 'nb_no', 'nn_no', 'nl_nl', 'fy_nl', 'pl_pl', 'pt_br', 'pt_pt', 'ro_ro', 'ru_ru', 'sk_sk', 'sl_si', 'sv_se', 'th_th', 'tr_tr', 'ku_tr', 'zh_cn', 'zh_hk', 'zh_tw', 'fb_lt', 'af_za', 'sq_al', 'hy_am', 'az_az', 'be_by', 'bn_in', 'bs_ba', 'bg_bg', 'hr_hr', 'nl_be', 'en_gb', 'eo_eo', 'et_ee', 'fo_fo', 'fr_ca', 'ka_ge', 'el_gr', 'gu_in', 'hi_in', 'is_is', 'id_id', 'ga_ie', 'jv_id', 'kn_in', 'kk_kz', 'ky_kg', 'la_va', 'lv_lv', 'li_nl', 'lt_lt', 'mi_nz', 'mk_mk', 'mg_mg', 'ms_my', 'mt_mt', 'mr_in', 'mn_mn', 'ne_np', 'pa_in', 'rm_ch', 'sa_in', 'sr_rs', 'so_so', 'sw_ke', 'tl_ph', 'ta_in', 'tt_ru', 'te_in', 'ml_in', 'uk_ua', 'uz_uz', 'vi_vn', 'xh_za', 'zu_za', 'km_kh', 'tg_tj', 'ar_ar', 'he_il', 'ur_pk', 'fa_ir', 'sy_sy', 'yi_de', 'qc_gt', 'qu_pe', 'ay_bo', 'se_no', 'ps_af', 'tl_st', 'gx_gr', 'my_mm', 'qz_mm', 'or_in', 'si_lk', 'rw_rw', 'ak_gh', 'nd_zw', 'sn_zw', 'cb_iq', 'ha_ng', 'yo_ng', 'ja_ks', 'lg_ug', 'br_fr', 'zz_tr', 'tz_ma', 'co_fr', 'ig_ng', 'as_in', 'am_et', 'lo_la', 'ny_mw', 'wo_sn', 'ff_ng', 'sc_it', 'ln_cd', 'tk_tm', 'sz_pl', 'bp_in', 'ns_za', 'tn_bw', 'st_za', 'ts_za', 'ss_sz', 'ks_in', 've_za', 'nr_za', 'ik_us', 'su_id', 'om_et', 'em_zm', 'qr_gr', 'iu_ca']}
+        - {label: Schema type, name: schema_type, widget: select, required: false, hint: 'Este campo sobrescreve o JSON Schema padrão', options: ['Article', 'BlogPosting', 'Event', 'LocalBusiness', 'OfferCatalog', 'Person', 'Product', 'Service']}
+        - {label: Custom meta tags, name: meta_custom, widget: code, required: false, hint: 'Insira aqui <meta> tags adicionais no <head> da página'}
+        - {label: Robots, name: robots, widget: select, required: false, default: 'index,follow', hint: 'Sinaliza o método de indexação aos buscadores', options: ['index,follow', 'index,follow,noarchive', 'index,nofollow', 'noindex, nofollow']}
+        - {label: Canonical URL, name: canonical, widget: string, required: false, hint: 'Este campo sobrescreve a meta tag "canonical" do <head>', pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida']}
+      - label: Scripts (avançado)
+        name: scripts
+        collapsed: true
+        widget: object
+        fields:
+        - {label: Scripts do <head>, name: head, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+        - {label: Scripts do início do <body>, name: body, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+        - {label: Scripts do final do <body>, name: footer, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+      - {label: UUID, name: uuid, widget: uuid}
+
+
+  - name: cards
+    label: Cartões
+    label_singular: cartão
+    folder: src/cartoes/cartao/
+    identifier_field: title
+    editor:
+      preview: false
+    create: true
+    slug: '{{slug}}'
+    clean_accents: true
+    description: >
+      💬 MOSTRE SUAS SOLUÇÕES PARA O MUNDO! Aqui você poderá publicar produtos ou serviços em seu site. 💰💰
+    fields:
+      - {label: Título, name: title, widget: string}
+      - {label: Subtítulo, name: subtitle, widget: string, required: false}
+      - {label: Cadastro online?, name: available, widget: boolean, required: false}
+      - {label: Link para cadastro, name: signup, widget: string, required: false}
+      - {label: Link para recarga, name: topup, widget: string, required: false}
+      - {label: Conteúdo, name: body, required: false, widget: markdown}
+      # - {label: Permalink (avançado), name: permalink, widget: string, pattern: ['^[a-zA-Z0-9_/-]{1,}$',"Caracteres especiais e espaços são inválidos"], required: false, hint: 'Ex: /link/para-sua-pagina. ATENÇÃO: Alterar o Permalink de uma página existente pode prejudicar seu SEO'}  
+      - label: Meta Tags (avançado)
+        name: meta
+        collapsed: true
+        widget: object
+        fields:
+        - {label: Meta title, name: meta_title, widget: string, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Title"'}
+        - {label: Meta description, name: meta_desc, widget: string, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Description"'}
+        - {label: Meta image, name: meta_image, widget: image, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Image"'}
+        - {label: OG type, name: og_type, widget: select, required: false, hint: 'Este campo sobrescreve a meta tag og:type', options: ['article', 'book', 'music.song', 'music.album', 'music.playlist', 'music.radio_station', 'profile', 'video.movie', 'video.episode', 'video.tv_show', 'video.other', 'website']}
+        - {label: OG locale, name: og_locale, widget: select, required: false, default: pt_br, hint: 'Define o idioma da página no <head>', options: ['en_us', 'ca_es', 'cs_cz', 'cx_ph', 'cy_gb', 'da_dk', 'de_de', 'eu_es', 'en_pi', 'en_ud', 'ck_us', 'es_la', 'es_es', 'es_mx', 'gn_py', 'fi_fi', 'fr_fr', 'gl_es', 'ht_ht', 'hu_hu', 'it_it', 'ja_jp', 'ko_kr', 'nb_no', 'nn_no', 'nl_nl', 'fy_nl', 'pl_pl', 'pt_br', 'pt_pt', 'ro_ro', 'ru_ru', 'sk_sk', 'sl_si', 'sv_se', 'th_th', 'tr_tr', 'ku_tr', 'zh_cn', 'zh_hk', 'zh_tw', 'fb_lt', 'af_za', 'sq_al', 'hy_am', 'az_az', 'be_by', 'bn_in', 'bs_ba', 'bg_bg', 'hr_hr', 'nl_be', 'en_gb', 'eo_eo', 'et_ee', 'fo_fo', 'fr_ca', 'ka_ge', 'el_gr', 'gu_in', 'hi_in', 'is_is', 'id_id', 'ga_ie', 'jv_id', 'kn_in', 'kk_kz', 'ky_kg', 'la_va', 'lv_lv', 'li_nl', 'lt_lt', 'mi_nz', 'mk_mk', 'mg_mg', 'ms_my', 'mt_mt', 'mr_in', 'mn_mn', 'ne_np', 'pa_in', 'rm_ch', 'sa_in', 'sr_rs', 'so_so', 'sw_ke', 'tl_ph', 'ta_in', 'tt_ru', 'te_in', 'ml_in', 'uk_ua', 'uz_uz', 'vi_vn', 'xh_za', 'zu_za', 'km_kh', 'tg_tj', 'ar_ar', 'he_il', 'ur_pk', 'fa_ir', 'sy_sy', 'yi_de', 'qc_gt', 'qu_pe', 'ay_bo', 'se_no', 'ps_af', 'tl_st', 'gx_gr', 'my_mm', 'qz_mm', 'or_in', 'si_lk', 'rw_rw', 'ak_gh', 'nd_zw', 'sn_zw', 'cb_iq', 'ha_ng', 'yo_ng', 'ja_ks', 'lg_ug', 'br_fr', 'zz_tr', 'tz_ma', 'co_fr', 'ig_ng', 'as_in', 'am_et', 'lo_la', 'ny_mw', 'wo_sn', 'ff_ng', 'sc_it', 'ln_cd', 'tk_tm', 'sz_pl', 'bp_in', 'ns_za', 'tn_bw', 'st_za', 'ts_za', 'ss_sz', 'ks_in', 've_za', 'nr_za', 'ik_us', 'su_id', 'om_et', 'em_zm', 'qr_gr', 'iu_ca']}
+        - {label: Schema type, name: schema_type, widget: select, required: false, hint: 'Este campo sobrescreve o JSON Schema padrão', options: ['Article', 'BlogPosting', 'Event', 'LocalBusiness', 'OfferCatalog', 'Person', 'Product', 'Service']}
+        - {label: Custom meta tags, name: meta_custom, widget: code, required: false, hint: 'Insira aqui <meta> tags adicionais no <head> da página'}
+        - {label: Robots, name: robots, widget: select, required: false, default: 'index,follow', hint: 'Sinaliza o método de indexação aos buscadores', options: ['index,follow', 'index,follow,noarchive', 'index,nofollow', 'noindex, nofollow']}
+        - {label: Canonical URL, name: canonical, widget: string, required: false, hint: 'Este campo sobrescreve a meta tag "canonical" do <head>', pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida']}
+      - label: Scripts (avançado)
+        name: scripts
+        collapsed: true
+        widget: object
+        fields:
+        - {label: Scripts do <head>, name: head, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+        - {label: Scripts do início do <body>, name: body, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+        - {label: Scripts do final do <body>, name: footer, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+      - {label: UUID, name: uuid, widget: uuid}
+
+
+  - name: faq
+    label: Central de ajuda
+    label_singular: pergunta
+    folder: src/faq/posts
+    identifier_field: title
+    editor:
+      preview: false
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    clean_accents: true
+    description: >
+      💬 ESTÁ INSPIRADO? Ótimo! Você pode escrever artigos para seu blog aqui. 💡
+    fields:
+      - {label: Título, name: title, widget: string, hint: Insira o título do post}
+      - {label: Data, name: date, widget: datetime, required: false }
+
+      - label: Tags
+        name: tags
+        label_singular: tag
+        required: false
+        collapsed: true
+        minimize_collapsed: true
+        summary: '{{field.tag}}'
+        max: 10
+        widget: list
+        field: {label: Tags, name: tag, widget: string, hint: 'Ex: novidades, transporte público, dúvida frequente'}
+
+      - label: "Autor"
+        name: "author"
+        widget: "relation"
+        collection: "authors"
+        search_fields: ["title"]
+        display_fields: ["title"]
+        value_field: "title"
+
+      - {label: Conteúdo, name: body, widget: markdown}
+     
+      # - {label: Permalink (avançado), name: permalink, widget: string, pattern: ['^[a-zA-Z0-9_/-]{1,}$',"Caracteres especiais e espaços são inválidos"], required: false, hint: 'Ex: /link/para-sua-pagina. ATENÇÃO: Alterar o Permalink de uma página existente pode prejudicar seu SEO'}  
+      - label: Meta Tags (avançado)
+        name: meta
+        collapsed: true
+        widget: object
+        fields:
+        - {label: Meta title, name: meta_title, widget: string, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Title"'}
+        - {label: Meta description, name: meta_desc, widget: string, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Description"'}
+        - {label: Meta image, name: meta_image, widget: image, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Image"'}
+        - {label: OG type, name: og_type, widget: select, required: false, hint: 'Este campo sobrescreve a meta tag og:type', options: ['article', 'book', 'music.song', 'music.album', 'music.playlist', 'music.radio_station', 'profile', 'video.movie', 'video.episode', 'video.tv_show', 'video.other', 'website']}
+        - {label: OG locale, name: og_locale, widget: select, required: false, default: pt_br, hint: 'Define o idioma da página no <head>', options: ['en_us', 'ca_es', 'cs_cz', 'cx_ph', 'cy_gb', 'da_dk', 'de_de', 'eu_es', 'en_pi', 'en_ud', 'ck_us', 'es_la', 'es_es', 'es_mx', 'gn_py', 'fi_fi', 'fr_fr', 'gl_es', 'ht_ht', 'hu_hu', 'it_it', 'ja_jp', 'ko_kr', 'nb_no', 'nn_no', 'nl_nl', 'fy_nl', 'pl_pl', 'pt_br', 'pt_pt', 'ro_ro', 'ru_ru', 'sk_sk', 'sl_si', 'sv_se', 'th_th', 'tr_tr', 'ku_tr', 'zh_cn', 'zh_hk', 'zh_tw', 'fb_lt', 'af_za', 'sq_al', 'hy_am', 'az_az', 'be_by', 'bn_in', 'bs_ba', 'bg_bg', 'hr_hr', 'nl_be', 'en_gb', 'eo_eo', 'et_ee', 'fo_fo', 'fr_ca', 'ka_ge', 'el_gr', 'gu_in', 'hi_in', 'is_is', 'id_id', 'ga_ie', 'jv_id', 'kn_in', 'kk_kz', 'ky_kg', 'la_va', 'lv_lv', 'li_nl', 'lt_lt', 'mi_nz', 'mk_mk', 'mg_mg', 'ms_my', 'mt_mt', 'mr_in', 'mn_mn', 'ne_np', 'pa_in', 'rm_ch', 'sa_in', 'sr_rs', 'so_so', 'sw_ke', 'tl_ph', 'ta_in', 'tt_ru', 'te_in', 'ml_in', 'uk_ua', 'uz_uz', 'vi_vn', 'xh_za', 'zu_za', 'km_kh', 'tg_tj', 'ar_ar', 'he_il', 'ur_pk', 'fa_ir', 'sy_sy', 'yi_de', 'qc_gt', 'qu_pe', 'ay_bo', 'se_no', 'ps_af', 'tl_st', 'gx_gr', 'my_mm', 'qz_mm', 'or_in', 'si_lk', 'rw_rw', 'ak_gh', 'nd_zw', 'sn_zw', 'cb_iq', 'ha_ng', 'yo_ng', 'ja_ks', 'lg_ug', 'br_fr', 'zz_tr', 'tz_ma', 'co_fr', 'ig_ng', 'as_in', 'am_et', 'lo_la', 'ny_mw', 'wo_sn', 'ff_ng', 'sc_it', 'ln_cd', 'tk_tm', 'sz_pl', 'bp_in', 'ns_za', 'tn_bw', 'st_za', 'ts_za', 'ss_sz', 'ks_in', 've_za', 'nr_za', 'ik_us', 'su_id', 'om_et', 'em_zm', 'qr_gr', 'iu_ca']}
+        - {label: Schema type, name: schema_type, widget: select, required: false, hint: 'Este campo sobrescreve o JSON Schema padrão', options: ['Article', 'BlogPosting', 'Event', 'LocalBusiness', 'OfferCatalog', 'Person', 'Product', 'Service']}
+        - {label: Custom meta tags, name: meta_custom, widget: code, required: false, hint: 'Insira aqui <meta> tags adicionais no <head> da página'}
+        - {label: Robots, name: robots, widget: select, required: false, default: 'index,follow', hint: 'Sinaliza o método de indexação aos buscadores', options: ['index,follow', 'index,follow,noarchive', 'index,nofollow', 'noindex, nofollow']}
+        - {label: Canonical URL, name: canonical, widget: string, required: false, hint: 'Este campo sobrescreve a meta tag "canonical" do <head>', pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida']}
+      - label: Scripts (avançado)
+        name: scripts
+        collapsed: true
+        widget: object
+        fields:
+        - {label: Scripts do <head>, name: head, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+        - {label: Scripts do início do <body>, name: body, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+        - {label: Scripts do final do <body>, name: footer, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+      - {label: UUID, name: uuid, widget: uuid}
+
+
+  - name: posts
+    label: Posts
+    label_singular: post
+    folder: src/blog/posts
+    identifier_field: title
+    editor:
+      preview: false
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    clean_accents: true
+    view_groups:
+      - label: Year
+        field: date
+        pattern: \d{4}
+    description: >
+      💬 ESTÁ INSPIRADO? Ótimo! Você pode escrever artigos para seu blog aqui. 💡
+    fields:
+      - {label: Título, name: title, widget: string, hint: Insira o título do post, comment: "So um teste"}
+      - {label: Data, name: date, widget: datetime, required: false }
+
+      - label: Tags
+        name: tags
+        label_singular: tag
+        required: false
+        collapsed: true
+        minimize_collapsed: true
+        summary: '{{field.tag}}'
+        max: 10
+        widget: list
+        field: {label: Tags, name: tag, widget: string, hint: 'Ex: novidades, transporte público, dúvida frequente'}
+      
+      - label: Imagem
+        name: imgs
+        label_singular: item
+        required: false
+        collapsed: true
+        minimize_collapsed: true
+        summary: '{{fields.src}}'
+        max: 10
+        widget: list
+        fields:
+          - {label: Imagem, name: src, widget: image }
+          - {label: Alt, name: alt, widget: string, required: false }
+        
+      - label: "Autor"
+        name: "author"
+        widget: "relation"
+        collection: "authors"
+        search_fields: ["title"]
+        display_fields: ["title"]
+        value_field: "title"
+
+      - {label: Conteúdo, name: body, widget: markdown}
+     
+      # - {label: Permalink (avançado), name: permalink, widget: string, pattern: ['^[a-zA-Z0-9_/-]{1,}$',"Caracteres especiais e espaços são inválidos"], required: false, hint: 'Ex: /link/para-sua-pagina. ATENÇÃO: Alterar o Permalink de uma página existente pode prejudicar seu SEO'}  
+      - label: Meta Tags (avançado)
+        name: meta
+        collapsed: true
+        widget: object
+        fields:
+        - {label: Meta title, name: meta_title, widget: string, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Title"'}
+        - {label: Meta description, name: meta_desc, widget: string, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Description"'}
+        - {label: Meta image, name: meta_image, widget: image, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Image"'}
+        - {label: OG type, name: og_type, widget: select, required: false, hint: 'Este campo sobrescreve a meta tag og:type', options: ['article', 'book', 'music.song', 'music.album', 'music.playlist', 'music.radio_station', 'profile', 'video.movie', 'video.episode', 'video.tv_show', 'video.other', 'website']}
+        - {label: OG locale, name: og_locale, widget: select, required: false, default: pt_br, hint: 'Define o idioma da página no <head>', options: ['en_us', 'ca_es', 'cs_cz', 'cx_ph', 'cy_gb', 'da_dk', 'de_de', 'eu_es', 'en_pi', 'en_ud', 'ck_us', 'es_la', 'es_es', 'es_mx', 'gn_py', 'fi_fi', 'fr_fr', 'gl_es', 'ht_ht', 'hu_hu', 'it_it', 'ja_jp', 'ko_kr', 'nb_no', 'nn_no', 'nl_nl', 'fy_nl', 'pl_pl', 'pt_br', 'pt_pt', 'ro_ro', 'ru_ru', 'sk_sk', 'sl_si', 'sv_se', 'th_th', 'tr_tr', 'ku_tr', 'zh_cn', 'zh_hk', 'zh_tw', 'fb_lt', 'af_za', 'sq_al', 'hy_am', 'az_az', 'be_by', 'bn_in', 'bs_ba', 'bg_bg', 'hr_hr', 'nl_be', 'en_gb', 'eo_eo', 'et_ee', 'fo_fo', 'fr_ca', 'ka_ge', 'el_gr', 'gu_in', 'hi_in', 'is_is', 'id_id', 'ga_ie', 'jv_id', 'kn_in', 'kk_kz', 'ky_kg', 'la_va', 'lv_lv', 'li_nl', 'lt_lt', 'mi_nz', 'mk_mk', 'mg_mg', 'ms_my', 'mt_mt', 'mr_in', 'mn_mn', 'ne_np', 'pa_in', 'rm_ch', 'sa_in', 'sr_rs', 'so_so', 'sw_ke', 'tl_ph', 'ta_in', 'tt_ru', 'te_in', 'ml_in', 'uk_ua', 'uz_uz', 'vi_vn', 'xh_za', 'zu_za', 'km_kh', 'tg_tj', 'ar_ar', 'he_il', 'ur_pk', 'fa_ir', 'sy_sy', 'yi_de', 'qc_gt', 'qu_pe', 'ay_bo', 'se_no', 'ps_af', 'tl_st', 'gx_gr', 'my_mm', 'qz_mm', 'or_in', 'si_lk', 'rw_rw', 'ak_gh', 'nd_zw', 'sn_zw', 'cb_iq', 'ha_ng', 'yo_ng', 'ja_ks', 'lg_ug', 'br_fr', 'zz_tr', 'tz_ma', 'co_fr', 'ig_ng', 'as_in', 'am_et', 'lo_la', 'ny_mw', 'wo_sn', 'ff_ng', 'sc_it', 'ln_cd', 'tk_tm', 'sz_pl', 'bp_in', 'ns_za', 'tn_bw', 'st_za', 'ts_za', 'ss_sz', 'ks_in', 've_za', 'nr_za', 'ik_us', 'su_id', 'om_et', 'em_zm', 'qr_gr', 'iu_ca']}
+        - {label: Schema type, name: schema_type, widget: select, required: false, hint: 'Este campo sobrescreve o JSON Schema padrão', options: ['Article', 'BlogPosting', 'Event', 'LocalBusiness', 'OfferCatalog', 'Person', 'Product', 'Service']}
+        - {label: Custom meta tags, name: meta_custom, widget: code, required: false, hint: 'Insira aqui <meta> tags adicionais no <head> da página'}
+        - {label: Robots, name: robots, widget: select, required: false, default: 'index,follow', hint: 'Sinaliza o método de indexação aos buscadores', options: ['index,follow', 'index,follow,noarchive', 'index,nofollow', 'noindex, nofollow']}
+        - {label: Canonical URL, name: canonical, widget: string, required: false, hint: 'Este campo sobrescreve a meta tag "canonical" do <head>', pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida']}
+      - label: Scripts (avançado)
+        name: scripts
+        collapsed: true
+        widget: object
+        fields:
+        - {label: Scripts do <head>, name: head, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+        - {label: Scripts do início do <body>, name: body, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+        - {label: Scripts do final do <body>, name: footer, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+      - {label: UUID, name: uuid, widget: uuid}
+
+
+  - name: 'orgs'
+    label: 'Lojas'
+    label_singular: 'loja'
+    folder: 'src/lojas/loja'
+    identifier_field: title
+    editor:
+      preview: false
+    create: true
+    slug: '{{slug}}'
+    clean_accents: true
+    description: >
+     💬 Inclua aqui outras empresas para serem publicadas. 💼
+    fields: 
+      - {label: 'Título', name: 'title', widget: 'string'}
+
+      - label: Imagem
+        name: imgs
+        label_singular: item
+        required: false
+        collapsed: true
+        minimize_collapsed: true
+        summary: '{{fields.src}}'
+        max: 10
+        widget: list
+        fields:
+          - {label: Imagem, name: src, widget: image }
+          - {label: Alt, name: alt, widget: string, required: false }
+
+      - label: 'Informações de contato'
+        name: 'contact'
+        widget: 'object'
+        collapsed: true
+        minimize_collapsed: true
+        fields:
+        - {label: Email, name: email, widget: string, required: false, pattern: ['[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+', "O e-mail inserido é inválido"]}
+        - {label: Cód do país, name: country_code, widget: number, default: 55 , required: false, hint: Insira o número com a devida pontuação }
+        - {label: Telefone, name: phone, widget: string, required: false, hint: Insira o número com a devida pontuação }
+        - {label: Celular, name: mobile, widget: string, required: false, hint: Insira o número com a devida pontuação }
+
+      - label: 'Endereço'
+        name: 'address'
+        widget: 'object'
+        collapsed: true
+        minimize_collapsed: true
+        fields:
+        - {label: 'Rua', name: 'street', widget: 'string', required: false}
+        - {label: 'Número', name: 'number', widget: 'string', required: false}
+        - {label: 'Complemento', name: 'line2', widget: 'string', required: false}
+        - {label: 'Bairro', name: 'neighborhood', widget: 'string', required: false}
+        - {label: 'Cidade', name: 'city', widget: 'string', required: false}
+        - {label: 'Estado', name: 'state', widget: 'string', required: false}
+        - {label: 'CEP', name: 'postal', widget: 'string', required: false}
+        - {label: 'País', name: 'country', widget: 'string', required: false, default: 'Brazil'}
+
+      - label: 'Redes sociais'
+        name: 'social'
+        widget: 'object'
+        collapsed: true
+        minimize_collapsed: true
+        fields:
+        - {label: Google Maps, name: gmaps, widget: string, pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida'], required: false, hint: 'Não se esqueça do "https://". Exemplo: "https://facebook.com.br/"' }
+        - {label: Google Maps Embed, name: gmaps_iframe_src, widget: string, pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida'], required: false, hint: 'Não se esqueça do "https://". Exemplo: "https://github.com.br/"' }
+
+      - label: 'Horário de funcionamento'
+        name: 'business_hours'
+        widget: 'list'
+        collapsed: true
+        minimize_collapsed: true
+        fields:
+        - label: 'Dia da semana'
+          name: 'weekday'
+          widget: 'select'
+          required: false
+          options:
+            - { label: Segunda, value: 'Monday' }
+            - { label: Terça, value: 'Tuesday' }
+            - { label: Quarta, value: 'Wednesday' }
+            - { label: Quinta, value: 'Thursday' }
+            - { label: Sexta, value: 'Friday' }
+            - { label: Sábado, value: 'Saturday' }
+            - { label: Domingo, value: 'Sunday' }
+        - {label: Horário de abertura, name: opens, widget: select, options: ['00:00', '00:15', '00:30', '00:45', '01:00', '01:15', '01:30', '01:45', '02:00', '02:15', '02:30', '02:45', '03:00', '03:15', '03:30', '03:45', '04:00', '04:15', '04:30', '04:45', '05:00', '05:15', '05:30', '05:45', '06:00', '06:15', '06:30', '06:45', '07:00', '07:15', '07:30', '07:45', '08:00', '08:15', '08:30', '08:45', '09:00', '09:15', '09:30', '09:45', '10:00', '10:15', '10:30', '10:45', '11:00', '11:15', '11:30', '11:45', '12:00', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45', '14:00', '14:15', '14:30', '14:45', '15:00', '15:15', '15:30', '15:45', '16:00', '16:15', '16:30', '16:45', '17:00', '17:15', '17:30', '17:45', '18:00', '18:15', '18:30', '18:45', '19:00', '19:15', '19:30', '19:45', '20:00', '20:15', '20:30', '20:45', '21:00', '21:15', '21:30', '21:45', '22:00', '22:15', '22:30', '22:45', '23:00', '23:15', '23:30', '23:45', ], required: false}
+        - {label: Horário de fechamento, name: closes, widget: select, options: ['00:00', '00:15', '00:30', '00:45', '01:00', '01:15', '01:30', '01:45', '02:00', '02:15', '02:30', '02:45', '03:00', '03:15', '03:30', '03:45', '04:00', '04:15', '04:30', '04:45', '05:00', '05:15', '05:30', '05:45', '06:00', '06:15', '06:30', '06:45', '07:00', '07:15', '07:30', '07:45', '08:00', '08:15', '08:30', '08:45', '09:00', '09:15', '09:30', '09:45', '10:00', '10:15', '10:30', '10:45', '11:00', '11:15', '11:30', '11:45', '12:00', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45', '14:00', '14:15', '14:30', '14:45', '15:00', '15:15', '15:30', '15:45', '16:00', '16:15', '16:30', '16:45', '17:00', '17:15', '17:30', '17:45', '18:00', '18:15', '18:30', '18:45', '19:00', '19:15', '19:30', '19:45', '20:00', '20:15', '20:30', '20:45', '21:00', '21:15', '21:30', '21:45', '22:00', '22:15', '22:30', '22:45', '23:00', '23:15', '23:30', '23:45', ], required: false}
+
+      - {label: 'Conteúdo', name: 'body', required: false, widget: 'markdown'}
+
+      # - {label: Permalink (avançado), name: permalink, widget: string, pattern: ['^[a-zA-Z0-9_/-]{1,}$',"Caracteres especiais e espaços são inválidos"], required: false, hint: 'Ex: /link/para-sua-pagina. ATENÇÃO: Alterar o Permalink de uma página existente pode prejudicar seu SEO'}  
+      - label: Meta Tags (avançado)
+        name: meta
+        collapsed: true
+        widget: object
+        fields:
+        - {label: Meta title, name: meta_title, widget: string, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Title"'}
+        - {label: Meta description, name: meta_desc, widget: string, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Description"'}
+        - {label: Meta image, name: meta_image, widget: image, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Image"'}
+        - {label: OG type, name: og_type, widget: select, required: false, hint: 'Este campo sobrescreve a meta tag og:type', options: ['article', 'book', 'music.song', 'music.album', 'music.playlist', 'music.radio_station', 'profile', 'video.movie', 'video.episode', 'video.tv_show', 'video.other', 'website']}
+        - {label: OG locale, name: og_locale, widget: select, required: false, default: pt_br, hint: 'Define o idioma da página no <head>', options: ['en_us', 'ca_es', 'cs_cz', 'cx_ph', 'cy_gb', 'da_dk', 'de_de', 'eu_es', 'en_pi', 'en_ud', 'ck_us', 'es_la', 'es_es', 'es_mx', 'gn_py', 'fi_fi', 'fr_fr', 'gl_es', 'ht_ht', 'hu_hu', 'it_it', 'ja_jp', 'ko_kr', 'nb_no', 'nn_no', 'nl_nl', 'fy_nl', 'pl_pl', 'pt_br', 'pt_pt', 'ro_ro', 'ru_ru', 'sk_sk', 'sl_si', 'sv_se', 'th_th', 'tr_tr', 'ku_tr', 'zh_cn', 'zh_hk', 'zh_tw', 'fb_lt', 'af_za', 'sq_al', 'hy_am', 'az_az', 'be_by', 'bn_in', 'bs_ba', 'bg_bg', 'hr_hr', 'nl_be', 'en_gb', 'eo_eo', 'et_ee', 'fo_fo', 'fr_ca', 'ka_ge', 'el_gr', 'gu_in', 'hi_in', 'is_is', 'id_id', 'ga_ie', 'jv_id', 'kn_in', 'kk_kz', 'ky_kg', 'la_va', 'lv_lv', 'li_nl', 'lt_lt', 'mi_nz', 'mk_mk', 'mg_mg', 'ms_my', 'mt_mt', 'mr_in', 'mn_mn', 'ne_np', 'pa_in', 'rm_ch', 'sa_in', 'sr_rs', 'so_so', 'sw_ke', 'tl_ph', 'ta_in', 'tt_ru', 'te_in', 'ml_in', 'uk_ua', 'uz_uz', 'vi_vn', 'xh_za', 'zu_za', 'km_kh', 'tg_tj', 'ar_ar', 'he_il', 'ur_pk', 'fa_ir', 'sy_sy', 'yi_de', 'qc_gt', 'qu_pe', 'ay_bo', 'se_no', 'ps_af', 'tl_st', 'gx_gr', 'my_mm', 'qz_mm', 'or_in', 'si_lk', 'rw_rw', 'ak_gh', 'nd_zw', 'sn_zw', 'cb_iq', 'ha_ng', 'yo_ng', 'ja_ks', 'lg_ug', 'br_fr', 'zz_tr', 'tz_ma', 'co_fr', 'ig_ng', 'as_in', 'am_et', 'lo_la', 'ny_mw', 'wo_sn', 'ff_ng', 'sc_it', 'ln_cd', 'tk_tm', 'sz_pl', 'bp_in', 'ns_za', 'tn_bw', 'st_za', 'ts_za', 'ss_sz', 'ks_in', 've_za', 'nr_za', 'ik_us', 'su_id', 'om_et', 'em_zm', 'qr_gr', 'iu_ca']}
+        - {label: Schema type, name: schema_type, widget: select, required: false, hint: 'Este campo sobrescreve o JSON Schema padrão', options: ['Article', 'BlogPosting', 'Event', 'LocalBusiness', 'OfferCatalog', 'Person', 'Product', 'Service']}
+        - {label: Custom meta tags, name: meta_custom, widget: code, required: false, hint: 'Insira aqui <meta> tags adicionais no <head> da página'}
+        - {label: Robots, name: robots, widget: select, required: false, default: 'index,follow', hint: 'Sinaliza o método de indexação aos buscadores', options: ['index,follow', 'index,follow,noarchive', 'index,nofollow', 'noindex, nofollow']}
+        - {label: Canonical URL, name: canonical, widget: string, required: false, hint: 'Este campo sobrescreve a meta tag "canonical" do <head>', pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida']}
+      - label: Scripts (avançado)
+        name: scripts
+        collapsed: true
+        widget: object
+        fields:
+        - {label: Scripts do <head>, name: head, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+        - {label: Scripts do início do <body>, name: body, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+        - {label: Scripts do final do <body>, name: footer, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+      - {label: UUID, name: uuid, widget: uuid}
+
+
+  - name: 'pages'
+    label: 'Páginas'
+    label_singular: 'página'
+    editor:
+      preview: false
+    folder: 'src/pages'
+    identifier_field: title
+    slug: '{{slug}}'
+    summary: "{{filename}}: {{permalink}}"
+    create: false
+    delete: false
+    clean_accents: true
+    description: >
+      💬 Edite aqui as páginas de seu site. 💼
+    fields:
+      - {label: 'Título', name: 'subtitle', widget: 'string', required: false}
+
+      - label: Imagem
+        name: imgs
+        label_singular: item
+        required: false
+        collapsed: true
+        minimize_collapsed: true
+        summary: '{{fields.src}}'
+        max: 10
+        widget: list
+        fields:
+          - {label: Imagem, name: src, widget: image }
+          - {label: Alt, name: alt, widget: string, required: false }
+
+      - {label: 'Conteúdo', name: 'body', required: false, widget: 'markdown'}
+
+      # - {label: Permalink (avançado), name: permalink, widget: string, pattern: ['^[a-zA-Z0-9_/-]{1,}$',"Caracteres especiais e espaços são inválidos"], required: false, hint: 'Ex: /link/para-sua-pagina. ATENÇÃO: Alterar o Permalink de uma página existente pode prejudicar seu SEO'}  
+      - label: Meta Tags (avançado)
+        name: meta
+        collapsed: true
+        widget: object
+        fields:
+        - {label: Meta title, name: meta_title, widget: string, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Title"'}
+        - {label: Meta description, name: meta_desc, widget: string, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Description"'}
+        - {label: Meta image, name: meta_image, widget: image, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Image"'}
+        - {label: OG type, name: og_type, widget: select, required: false, hint: 'Este campo sobrescreve a meta tag og:type', options: ['article', 'book', 'music.song', 'music.album', 'music.playlist', 'music.radio_station', 'profile', 'video.movie', 'video.episode', 'video.tv_show', 'video.other', 'website']}
+        - {label: OG locale, name: og_locale, widget: select, required: false, default: pt_br, hint: 'Define o idioma da página no <head>', options: ['en_us', 'ca_es', 'cs_cz', 'cx_ph', 'cy_gb', 'da_dk', 'de_de', 'eu_es', 'en_pi', 'en_ud', 'ck_us', 'es_la', 'es_es', 'es_mx', 'gn_py', 'fi_fi', 'fr_fr', 'gl_es', 'ht_ht', 'hu_hu', 'it_it', 'ja_jp', 'ko_kr', 'nb_no', 'nn_no', 'nl_nl', 'fy_nl', 'pl_pl', 'pt_br', 'pt_pt', 'ro_ro', 'ru_ru', 'sk_sk', 'sl_si', 'sv_se', 'th_th', 'tr_tr', 'ku_tr', 'zh_cn', 'zh_hk', 'zh_tw', 'fb_lt', 'af_za', 'sq_al', 'hy_am', 'az_az', 'be_by', 'bn_in', 'bs_ba', 'bg_bg', 'hr_hr', 'nl_be', 'en_gb', 'eo_eo', 'et_ee', 'fo_fo', 'fr_ca', 'ka_ge', 'el_gr', 'gu_in', 'hi_in', 'is_is', 'id_id', 'ga_ie', 'jv_id', 'kn_in', 'kk_kz', 'ky_kg', 'la_va', 'lv_lv', 'li_nl', 'lt_lt', 'mi_nz', 'mk_mk', 'mg_mg', 'ms_my', 'mt_mt', 'mr_in', 'mn_mn', 'ne_np', 'pa_in', 'rm_ch', 'sa_in', 'sr_rs', 'so_so', 'sw_ke', 'tl_ph', 'ta_in', 'tt_ru', 'te_in', 'ml_in', 'uk_ua', 'uz_uz', 'vi_vn', 'xh_za', 'zu_za', 'km_kh', 'tg_tj', 'ar_ar', 'he_il', 'ur_pk', 'fa_ir', 'sy_sy', 'yi_de', 'qc_gt', 'qu_pe', 'ay_bo', 'se_no', 'ps_af', 'tl_st', 'gx_gr', 'my_mm', 'qz_mm', 'or_in', 'si_lk', 'rw_rw', 'ak_gh', 'nd_zw', 'sn_zw', 'cb_iq', 'ha_ng', 'yo_ng', 'ja_ks', 'lg_ug', 'br_fr', 'zz_tr', 'tz_ma', 'co_fr', 'ig_ng', 'as_in', 'am_et', 'lo_la', 'ny_mw', 'wo_sn', 'ff_ng', 'sc_it', 'ln_cd', 'tk_tm', 'sz_pl', 'bp_in', 'ns_za', 'tn_bw', 'st_za', 'ts_za', 'ss_sz', 'ks_in', 've_za', 'nr_za', 'ik_us', 'su_id', 'om_et', 'em_zm', 'qr_gr', 'iu_ca']}
+        - {label: Schema type, name: schema_type, widget: select, required: false, hint: 'Este campo sobrescreve o JSON Schema padrão', options: ['Article', 'BlogPosting', 'Event', 'LocalBusiness', 'OfferCatalog', 'Person', 'Product', 'Service']}
+        - {label: Custom meta tags, name: meta_custom, widget: code, required: false, hint: 'Insira aqui <meta> tags adicionais no <head> da página'}
+        - {label: Robots, name: robots, widget: select, required: false, default: 'index,follow', hint: 'Sinaliza o método de indexação aos buscadores', options: ['index,follow', 'index,follow,noarchive', 'index,nofollow', 'noindex, nofollow']}
+        - {label: Canonical URL, name: canonical, widget: string, required: false, hint: 'Este campo sobrescreve a meta tag "canonical" do <head>', pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida']}
+      - label: Scripts (avançado)
+        name: scripts
+        collapsed: true
+        widget: object
+        fields:
+        - {label: Scripts do <head>, name: head, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+        - {label: Scripts do início do <body>, name: body, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+        - {label: Scripts do final do <body>, name: footer, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+      - {label: UUID, name: uuid, widget: uuid}
+
+
+  - name: policies
+    label: Políticas
+    label_singular: política
+    folder: src/politicas/
+    identifier_field: title
+    editor:
+      preview: false
+    create: true
+    slug: '{{slug}}'
+    clean_accents: true
+    description: >
+      💬 ESTÁ INSPIRADO? Ótimo! Você pode escrever artigos para seu blog aqui. 💡
+    fields:
+      - {label: Título, name: title, widget: string, hint: Insira o título do post}
+      - {label: Data, name: date, widget: datetime, required: false }
+        
+      - label: "Autor"
+        name: "author"
+        widget: "relation"
+        collection: "authors"
+        search_fields: ["title"]
+        display_fields: ["title"]
+        value_field: "title"
+
+      - {label: Conteúdo, name: body, widget: markdown}
+     
+      # - {label: Permalink (avançado), name: permalink, widget: string, pattern: ['^[a-zA-Z0-9_/-]{1,}$',"Caracteres especiais e espaços são inválidos"], required: false, hint: 'Ex: /link/para-sua-pagina. ATENÇÃO: Alterar o Permalink de uma página existente pode prejudicar seu SEO'}  
+      - label: Meta Tags (avançado)
+        name: meta
+        collapsed: true
+        widget: object
+        fields:
+        - {label: Meta title, name: meta_title, widget: string, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Title"'}
+        - {label: Meta description, name: meta_desc, widget: string, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Description"'}
+        - {label: Meta image, name: meta_image, widget: image, required: false, hint: 'Este campo sobrescreve as meta tags to tipo "Image"'}
+        - {label: OG type, name: og_type, widget: select, required: false, hint: 'Este campo sobrescreve a meta tag og:type', options: ['article', 'book', 'music.song', 'music.album', 'music.playlist', 'music.radio_station', 'profile', 'video.movie', 'video.episode', 'video.tv_show', 'video.other', 'website']}
+        - {label: OG locale, name: og_locale, widget: select, required: false, default: pt_br, hint: 'Define o idioma da página no <head>', options: ['en_us', 'ca_es', 'cs_cz', 'cx_ph', 'cy_gb', 'da_dk', 'de_de', 'eu_es', 'en_pi', 'en_ud', 'ck_us', 'es_la', 'es_es', 'es_mx', 'gn_py', 'fi_fi', 'fr_fr', 'gl_es', 'ht_ht', 'hu_hu', 'it_it', 'ja_jp', 'ko_kr', 'nb_no', 'nn_no', 'nl_nl', 'fy_nl', 'pl_pl', 'pt_br', 'pt_pt', 'ro_ro', 'ru_ru', 'sk_sk', 'sl_si', 'sv_se', 'th_th', 'tr_tr', 'ku_tr', 'zh_cn', 'zh_hk', 'zh_tw', 'fb_lt', 'af_za', 'sq_al', 'hy_am', 'az_az', 'be_by', 'bn_in', 'bs_ba', 'bg_bg', 'hr_hr', 'nl_be', 'en_gb', 'eo_eo', 'et_ee', 'fo_fo', 'fr_ca', 'ka_ge', 'el_gr', 'gu_in', 'hi_in', 'is_is', 'id_id', 'ga_ie', 'jv_id', 'kn_in', 'kk_kz', 'ky_kg', 'la_va', 'lv_lv', 'li_nl', 'lt_lt', 'mi_nz', 'mk_mk', 'mg_mg', 'ms_my', 'mt_mt', 'mr_in', 'mn_mn', 'ne_np', 'pa_in', 'rm_ch', 'sa_in', 'sr_rs', 'so_so', 'sw_ke', 'tl_ph', 'ta_in', 'tt_ru', 'te_in', 'ml_in', 'uk_ua', 'uz_uz', 'vi_vn', 'xh_za', 'zu_za', 'km_kh', 'tg_tj', 'ar_ar', 'he_il', 'ur_pk', 'fa_ir', 'sy_sy', 'yi_de', 'qc_gt', 'qu_pe', 'ay_bo', 'se_no', 'ps_af', 'tl_st', 'gx_gr', 'my_mm', 'qz_mm', 'or_in', 'si_lk', 'rw_rw', 'ak_gh', 'nd_zw', 'sn_zw', 'cb_iq', 'ha_ng', 'yo_ng', 'ja_ks', 'lg_ug', 'br_fr', 'zz_tr', 'tz_ma', 'co_fr', 'ig_ng', 'as_in', 'am_et', 'lo_la', 'ny_mw', 'wo_sn', 'ff_ng', 'sc_it', 'ln_cd', 'tk_tm', 'sz_pl', 'bp_in', 'ns_za', 'tn_bw', 'st_za', 'ts_za', 'ss_sz', 'ks_in', 've_za', 'nr_za', 'ik_us', 'su_id', 'om_et', 'em_zm', 'qr_gr', 'iu_ca']}
+        - {label: Schema type, name: schema_type, widget: select, required: false, hint: 'Este campo sobrescreve o JSON Schema padrão', options: ['Article', 'BlogPosting', 'Event', 'LocalBusiness', 'OfferCatalog', 'Person', 'Product', 'Service']}
+        - {label: Custom meta tags, name: meta_custom, widget: code, required: false, hint: 'Insira aqui <meta> tags adicionais no <head> da página'}
+        - {label: Robots, name: robots, widget: select, required: false, default: 'index,follow', hint: 'Sinaliza o método de indexação aos buscadores', options: ['index,follow', 'index,follow,noarchive', 'index,nofollow', 'noindex, nofollow']}
+        - {label: Canonical URL, name: canonical, widget: string, required: false, hint: 'Este campo sobrescreve a meta tag "canonical" do <head>', pattern: ['https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)', 'URL inválida']}
+      - label: Scripts (avançado)
+        name: scripts
+        collapsed: true
+        widget: object
+        fields:
+        - {label: Scripts do <head>, name: head, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+        - {label: Scripts do início do <body>, name: body, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+        - {label: Scripts do final do <body>, name: footer, widget: code, required: false, hint: 'Estes scripts afetarão somente essa página. Para adicionar scripts globalmente, acesse Configurações > Scripts'}
+      - {label: UUID, name: uuid, widget: uuid}

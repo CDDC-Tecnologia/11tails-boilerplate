@@ -1,0 +1,20 @@
+<h2>Confirme sua troca de e-mail</h2>
+
+<p>
+  Acesse o link para confirmar a atualização do seu e-mail.
+</p>
+<p>
+  <b>E-mail antigo: </b>{{ .Email }}
+</p>
+<p>
+  <b>E-mail novo: </b>{{ .NewEmail }}
+</p>
+<p>
+  <a href="{{ .SiteURL }}/admin/#email_change_token={{ .Token }}">Confirmar alteração de e-mail.</a>
+</p>
+<p>
+  Atenciosamente,
+</p>
+<p>
+  Equipe CDDC
+</p>
